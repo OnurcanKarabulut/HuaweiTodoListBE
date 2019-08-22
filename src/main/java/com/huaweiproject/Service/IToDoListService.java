@@ -8,5 +8,6 @@ public interface IToDoListService {
 
     void save(ToDoListModel model);
     List<ToDoListModel> findByUserName(String username);
+    List<ToDoListModel> findAll();
     void deleteById(Long id);
 }

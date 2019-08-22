@@ -20,6 +20,15 @@ public class ToDoModel {
     private Date date;
     private Date createdate;
     private String listName;
+    private Boolean isChecked;
+
+    public Boolean getIsChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(Boolean isChecked) {
+        this.isChecked = isChecked;
+    }
 
     public Date getCreatedate() {
         return createdate;

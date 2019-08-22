@@ -3,8 +3,10 @@ package com.huaweiproject.Controller;
 import com.huaweiproject.DTO.DeleteDTO;
 import com.huaweiproject.DTO.ToDoDTO;
 import com.huaweiproject.DTO.ToDoListDTO;
+import com.huaweiproject.DTO.UpdateDTO;
 import com.huaweiproject.Model.ToDoListModel;
 import com.huaweiproject.Model.ToDoModel;
+import com.huaweiproject.Response.TodoListResponse;
 import com.huaweiproject.Service.IToDoListService;
 import com.huaweiproject.Service.IToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,7 @@ public class TodoController {
         model.setCost(dto.getCost());
         model.setDate(dto.getDate());
         model.setTodo(dto.getTodo());
+        model.setIsChecked(dto.isChecked());
         todoService.save(model);
     }
 
@@ -50,11 +53,21 @@ public class TodoController {
         return todolistModelList;
     }
     @RequestMapping(value = "/createList" , method = RequestMethod.POST)
-    public void saveToDoList(@RequestBody ToDoListDTO dto){
+    public TodoListResponse saveToDoList(@RequestBody ToDoListDTO dto){
+        List<ToDoListModel> todoList = todoListService.findByUserName(dto.getUsername());
+        TodoListResponse response = new TodoListResponse();
+        for(ToDoListModel todoListModel : todoList){
+            if(todoListModel.getListName()==dto.getListname()){
+                response.setExist(true);
+                return response;
+            }
+        }
         ToDoListModel model = new ToDoListModel();
         model.setListName(dto.getListname());
         model.setUserName(dto.getUsername());
         todoListService.save(model);
+        response.setExist(false);
+        return response;
     }
     @RequestMapping(value = "/deleteList" , method = RequestMethod.DELETE)
     public void deleteToDoList(@RequestBody DeleteDTO dto){
@@ -63,5 +76,12 @@ public class TodoController {
     @RequestMapping(value = "/deleteToDoItem" , method = RequestMethod.DELETE)
     public void deleteToDoItem(@RequestBody DeleteDTO dto){
         todoService.deleteById(dto.getId());
+    }
+
+    @RequestMapping(value = "/updateIsCompleted" , method = RequestMethod.POST)
+    public void isCompleted(@RequestBody UpdateDTO dto){
+       ToDoModel model=  todoService.find(dto.getId());
+       model.setIsChecked(dto.isChecked());
+       todoService.save(model);
     }
 }

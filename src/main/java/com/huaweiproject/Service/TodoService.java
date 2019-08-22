@@ -32,4 +32,15 @@ public class TodoService implements IToDoService {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public ToDoModel find(Long id) {
+        List<ToDoModel> list = (List<ToDoModel>) repository.findAll();
+        for(ToDoModel model : list){
+            if(model.getId() == id){
+                return model;
+            }
+        }
+        return null;
+    }
 }

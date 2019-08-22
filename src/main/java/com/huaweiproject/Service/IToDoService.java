@@ -11,5 +11,6 @@ public interface IToDoService {
     List<ToDoModel> findAll();
     List<ToDoModel> findByListName(String listname);
     void deleteById(Long id);
+    ToDoModel find(Long id);
 }
 

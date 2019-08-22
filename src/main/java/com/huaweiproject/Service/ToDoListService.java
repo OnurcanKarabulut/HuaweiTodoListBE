@@ -25,6 +25,11 @@ public class ToDoListService implements IToDoListService {
     }
 
     @Override
+    public List<ToDoListModel> findAll() {
+        return  (List<ToDoListModel>) repository.findAll();
+    }
+
+    @Override
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
