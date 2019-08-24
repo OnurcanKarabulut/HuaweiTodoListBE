@@ -55,21 +55,18 @@ public class TodoController {
         return todolistModelList;
     }
     @RequestMapping(value = "/createList" , method = RequestMethod.POST)
-    public TodoListResponse saveToDoList(@RequestBody ToDoListDTO dto){
+    public boolean saveToDoList(@RequestBody ToDoListDTO dto){
         List<ToDoListModel> todoList = todoListService.findByUserName(dto.getUsername());
-        TodoListResponse response = new TodoListResponse();
         for(ToDoListModel todoListModel : todoList){
-            if(todoListModel.getListName()==dto.getListname()){
-                response.setExist(true);
-                return response;
+            if(todoListModel.getListName().equals(dto.getListname())){
+                return true;
             }
         }
         ToDoListModel model = new ToDoListModel();
         model.setListName(dto.getListname());
         model.setUserName(dto.getUsername());
         todoListService.save(model);
-        response.setExist(false);
-        return response;
+        return false;
     }
     @RequestMapping(value = "/deleteList" , method = RequestMethod.DELETE)
     public void deleteToDoList(@RequestBody DeleteDTO dto){
