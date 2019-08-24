@@ -24,7 +24,7 @@ public class TodoService implements IToDoService {
 
     @Override
     public List<ToDoModel> findByListName(String listname) {
-        List<ToDoModel> list = (List<ToDoModel>) repository.findBylistName(listname);
+        List<ToDoModel> list = (List<ToDoModel>) repository.findBylistNameOrderByCreatedateDesc(listname);
         return list;
     }
 

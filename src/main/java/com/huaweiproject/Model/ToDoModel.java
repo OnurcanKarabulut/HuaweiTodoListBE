@@ -16,7 +16,7 @@ public class ToDoModel {
     private Long id;
     private String username;
     private String todo;
-    private String cost;
+    private String description;
     private Date date;
     private Date createdate;
     private String listName;
@@ -62,12 +62,12 @@ public class ToDoModel {
         this.todo = todo;
     }
 
-    public String getCost() {
-        return cost;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCost(String cost) {
-        this.cost = cost;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getDate() {

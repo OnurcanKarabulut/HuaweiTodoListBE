@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ToDoRepository extends CrudRepository<ToDoModel, Long> {
     @Query
-    List<ToDoModel> findBylistName(@Param(value = "listname")String listname);
+    List<ToDoModel> findBylistNameOrderByCreatedateDesc(@Param(value = "listname")String listname);
 
     @Override
     void deleteById(Long aLong);

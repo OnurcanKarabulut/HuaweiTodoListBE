@@ -9,6 +9,7 @@ import java.util.List;
 public interface IUserService {
 
     List<UserModel> findAll();
-    void save(UserModel model);
+    UserModel save(UserModel model);
     boolean find(String name, String password);
+    UserModel findByName(String name);
 }

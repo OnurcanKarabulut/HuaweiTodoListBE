@@ -12,6 +12,7 @@ import com.huaweiproject.Service.IToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,8 +30,8 @@ public class TodoController {
 
         return list;
     }
-    @RequestMapping(value = "/findtodoItems/{username}", method = RequestMethod.GET)
-    public List<ToDoModel> findByUserId(@PathVariable(name = "username") String username){
+    @RequestMapping(value = "/findtodoItems/{listname}", method = RequestMethod.GET)
+    public List<ToDoModel> findByUserId(@PathVariable(name = "listname") String username){
         List<ToDoModel> todoList = todoService.findByListName(username);
         return todoList;
     }
@@ -40,9 +41,10 @@ public class TodoController {
         ToDoModel model = new ToDoModel();
         model.setUsername(dto.getUsername());
         model.setListName(dto.getListname());
-        model.setCost(dto.getCost());
+        model.setDescription(dto.getDescription());
         model.setDate(dto.getDate());
         model.setTodo(dto.getTodo());
+        model.setCreatedate(new Date());
         model.setIsChecked(dto.isChecked());
         todoService.save(model);
     }

@@ -37,8 +37,8 @@ public class UserController {
     public void signUp(@RequestBody UserDTO dto) {
         UserModel user = new UserModel();
         user.setName(dto.getFirst_name());
-        user.setPassword(dto.getPassword());
         user.setSurname(dto.getLast_name());
+        user.setPassword(dto.getPassword());
         userService.save(user);
 
     }

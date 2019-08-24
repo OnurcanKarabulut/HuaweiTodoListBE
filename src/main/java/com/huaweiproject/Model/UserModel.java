@@ -15,8 +15,6 @@ public class UserModel {
     private String surname;
     private String password;
 
-
-
     public String getName() {
         return name;
     }

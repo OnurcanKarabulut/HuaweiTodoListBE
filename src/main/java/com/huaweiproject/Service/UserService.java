@@ -20,8 +20,9 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void save(UserModel model) {
+    public UserModel save(UserModel model) {
         repository.save(model);
+        return model;
     }
 
     @Override
@@ -35,6 +36,10 @@ public class UserService implements IUserService {
         return false;
     }
 
+    @Override
+    public UserModel findByName(String name) {
+        return repository.findByname(name);
+    }
 
 
 }

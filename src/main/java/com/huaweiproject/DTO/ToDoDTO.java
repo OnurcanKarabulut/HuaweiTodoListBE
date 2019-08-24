@@ -1,14 +1,13 @@
 package com.huaweiproject.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.Date;
 
 public class ToDoDTO {
     private String username;
     private String todo;
-    private String cost;
+    private String description;
     private Date date;
     @JsonProperty(value = "checked")
     private boolean isChecked;
@@ -39,12 +38,12 @@ public class ToDoDTO {
         this.todo = todo;
     }
 
-    public String getCost() {
-        return cost;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCost(String cost) {
-        this.cost = cost;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getDate() {
